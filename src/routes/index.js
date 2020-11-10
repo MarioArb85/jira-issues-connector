@@ -40,7 +40,4 @@ router.post("/get-jira-issues", (req, res) => {
     	});
 });
 
-console.log(process.env.JIRA_URL);
-console.log(process.env.JIRA_CREDENTIALS);
-
 module.exports = router;
