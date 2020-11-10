@@ -20,8 +20,12 @@ router.get("/", (req, res) => {
     	.catch(error => {
     		const errorCode = error.statusCode || 400;
     		res.status(errorCode).json(error);
-      		throw error;
+      	throw error;
     	});
+});
+
+router.get("/endpoint-test", (req, res) => {
+  res.status(200).send({message: 'Holi'});
 });
 
 
