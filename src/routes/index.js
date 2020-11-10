@@ -12,9 +12,12 @@ var jira = new JiraClient({
 });
 
 router.get("/", (req, res) => {
+  console.log('getIssue1');
+  console.log(process.env.JIRA_URL);
 	jira.issue
     	.getIssue({issueKey: "OMS-443"})
     	.then(issue => {
+        console.log('getIssue2');
     		res.status(200).json(issue);
     	})
     	.catch(error => {
@@ -31,11 +34,14 @@ router.get("/endpoint-test", (req, res) => {
 
 router.post("/get-jira-issues", (req, res) => {
 	const jiraQuery = req.body;
+  console.log('search1');
+  console.log(process.env.JIRA_URL);
 
     jira.search
     	.search(jiraQuery)
     	.then(issues => {
-			res.status(200).json(issues);
+        console.log('search2');
+        res.status(200).json(issues);
     	})
     	.catch(error => {
     		const errorCode = error.statusCode || 400;
