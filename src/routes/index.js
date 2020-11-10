@@ -4,9 +4,9 @@ const router = Router();
 var JiraClient = require("jira-connector");
 
 var jira = new JiraClient({
-  host: 'project_url',
+  host: process.env.JIRA_URL,
   basic_auth: {
-    base64: 'user:pass'
+    base64: process.env.JIRA_CREDENTIALS
   },
   strictSSL: false
 });
