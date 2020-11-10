@@ -11,7 +11,6 @@ var jira = new JiraClient({
   strictSSL: false
 });
 
-/*
 router.get("/", (req, res) => {
 	jira.issue
     	.getIssue({issueKey: "OMS-443"})
@@ -24,7 +23,7 @@ router.get("/", (req, res) => {
       		throw error;
     	});
 });
-*/
+
 
 router.post("/get-jira-issues", (req, res) => {
 	const jiraQuery = req.body;
@@ -40,5 +39,8 @@ router.post("/get-jira-issues", (req, res) => {
       		throw error;
     	});
 });
+
+console.log(process.env.JIRA_URL);
+console.log(process.env.JIRA_CREDENTIALS);
 
 module.exports = router;
