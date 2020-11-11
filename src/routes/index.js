@@ -11,13 +11,8 @@ var jira = new JiraClient({
   strictSSL: false
 });
 
+/* Endpoint for testing purposes */
 router.get("/", (req, res) => {
-  console.log('getIssue1');
-  console.log(process.env.JIRA_URL);
-
-  getJiraIssue();
-
-/*
 	jira.issue
     	.getIssue({issueKey: "OMS-443"})
     	.then(issue => {
@@ -29,30 +24,10 @@ router.get("/", (req, res) => {
     		res.status(errorCode).json(error);
       	throw error;
     	});
-*/
 });
-
-async function getJiraIssue() {
-  try {
-    const issue = await jira.issue.getIssue({ issueKey: "OMdsfsfsS-443" });
-    console.log(issue);
-    res.status(200).json(issue);
-  } catch (err) {
-    console.log(err);
-    const errorCode = error.statusCode || 400;
-    res.status(errorCode).json(error);
-  }
-}
-
-router.get("/endpoint-test", (req, res) => {
-  res.status(200).send({message: 'Holi'});
-});
-
 
 router.post("/get-jira-issues", (req, res) => {
 	const jiraQuery = req.body;
-  console.log('search1');
-  console.log(process.env.JIRA_URL);
 
     jira.search
     	.search(jiraQuery)
