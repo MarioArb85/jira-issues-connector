@@ -14,32 +14,30 @@ var jira = new JiraClient({
 /* Endpoint for testing purposes */
 router.get("/", (req, res) => {
 	jira.issue
-    	.getIssue({issueKey: "OMS-443"})
-    	.then(issue => {
-        console.log('getIssue2');
-    		res.status(200).json(issue);
-    	})
-    	.catch(error => {
-    		const errorCode = error.statusCode || 400;
-    		res.status(errorCode).json(error);
-      	throw error;
-    	});
+    		.getIssue({issueKey: "OMS-443"})
+    		.then(issue => {
+        		res.status(200).json(issue);
+    		})
+    		.catch(error => {
+    			const errorCode = error.statusCode || 400;
+    			res.status(errorCode).json(error);
+      			throw error;
+		});
 });
 
 router.post("/get-jira-issues", (req, res) => {
 	const jiraQuery = req.body;
 
-    jira.search
-    	.search(jiraQuery)
-    	.then(issues => {
-        console.log('search2');
-        res.status(200).json(issues);
-    	})
-    	.catch(error => {
-    		const errorCode = error.statusCode || 400;
-    		res.status(errorCode).json(error);
-      		throw error;
-    	});
+   	jira.search
+    		.search(jiraQuery)
+    		.then(issues => {
+        		res.status(200).json(issues);
+    		})
+    		.catch(error => {
+	    		const errorCode = error.statusCode || 400;
+    			res.status(errorCode).json(error);
+      			throw error;
+    		});
 });
 
 module.exports = router;
